@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib
+END
+class.soap_server.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.soap_server.php
+END
+class.wsdl.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.wsdl.php
+END
+nusoapmime.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/nusoapmime.php
+END
+changelog
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/changelog
+END
+class.soap_fault.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.soap_fault.php
+END
+class.soap_transport_http.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.soap_transport_http.php
+END
+class.wsdlcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.wsdlcache.php
+END
+class.soap_parser.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.soap_parser.php
+END
+class.nusoap_base.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.nusoap_base.php
+END
+class.soapclient.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.soapclient.php
+END
+class.xmlschema.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.xmlschema.php
+END
+nusoap.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/nusoap.php
+END
+class.soap_val.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/php-include-path/!svn/ver/2/trunk/nusoap-0.9.5/lib/class.soap_val.php
+END
