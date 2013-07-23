@@ -225,8 +225,10 @@
 				<td align="left">
 					<input name="offer_it_log" type="checkbox" value="1" <?php if(get_option('offer_it_log') == 1) echo 'checked="checked"'; ?> />
 					Turn on plugin log activity &nbsp;
+<!--
 					<input type="submit" value="Show activity log" />
 					<input type="submit" value="Empty activity log" />
+-->
 				</td>
 			</tr>
 			</tr>

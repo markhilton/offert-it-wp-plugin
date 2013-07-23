@@ -9,7 +9,7 @@ Author URI: http://www.esecure.cc/
 License: GPL2
 */
 
-/*  Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
+/*  Copyright 2013 OfferIT Affiliate Tracking (email : mark@esecure.cc)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -25,13 +25,6 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-// TO DO:
-# push affiliate details to GA as events
-# push conversion details to GA
-# POST mapper for conversion pixel
-
-
-	
 	// load libraries
 	require_once('offer-it.class.php');
 	require_once('nusoap-0.9.5/lib/nusoap.php');

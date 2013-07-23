@@ -1,5 +1,5 @@
 <?php
-/*  Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
+/*  Copyright 2013 OfferIT Affiliate Tracking (email : mark@esecure.cc)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -47,7 +47,25 @@ class offer_it {
 			'landing_url', 		// landing URL to trigger redirection bounce vs OfferIT system
 			'conversion_url', 	// conversion URL to trigger post to OfferIT system
 			'conversion_ouid', 	// conversion unique variable
-			'log'               // log plugin activity
+			'db_table',			// source orders DB table
+			'db_column',		// source DB column containing order unique ID
+			'log',              // log plugin activity
+			'map_total',		// order DB field containing order total amount
+			'map_first_name',	// order DB field containing customer first name
+			'map_last_name',	// order DB field containing customer last name
+			'map_address1',		// order DB field containing customer address
+			'map_address2',		// order DB field containing customer address
+			'map_city',			// order DB field containing customer city
+			'map_state',		// order DB field containing customer state
+			'map_zip',			// order DB field containing customer zip code
+			'map_country',		// order DB field containing customer country
+			'map_email',		// order DB field containing customer email address
+			'map_phone',		// order DB field containing customer phone number
+			'map_custom1',		// order DB field containing order custom information
+			'map_custom2',		// order DB field containing order custom information
+			'map_custom3',		// order DB field containing order custom information
+			'map_custom4',		// order DB field containing order custom information
+			'map_custom5'		// order DB field containing order custom information
 		);
 
 		$required = array(
@@ -103,12 +121,12 @@ class offer_it {
 			$data  = array(
 				'address'  => $_SERVER['REMOTE_ADDR'],
 				'request'  => 'Querying order from DB: ' . $query,
-				'response' => substr(print_r($order, true), 6)
+				'response' => print_r($order, true)
 			);
 
 			if($this->config['log']) $this->wpdb->insert($this->wpdb->prefix . 'offerit_log', $data);
 
-			if(is_object($data)) $this->offer_it_conversion($order);
+			$response = $this->offer_it_conversion($order);
 	    endif;
 	    
 	    
@@ -140,33 +158,34 @@ class offer_it {
 
 	// post conversion pixel
 	function offer_it_conversion($data) {
-		if(!$_SESSION['offer_it']['transid'] || !$this->config['domain'] || !$this->config['conversion_ouid']) return false;
+		if(!$_SESSION['offer_it']['transid'] || !$this->config['domain']) return false;
 	
-		$mapper    = $this->config['mapper_post']['fields'];
+		$mapper    = $this->config;
 		$post_url  = sprintf('http://%s/signup/process_pixel.php', $this->config['domain']);
 		$post_data = array(
-			'transid'   => $_SESSION['offer_it']['transid'],			// offerIT transaction ID
-			'orderid'   => $_GET[ $this->config['conversion_ouid'] ],	// order ID - has to be unique for OfferIT to accept conversion POST call
+			'transid'   => $_SESSION['offer_it']['transid'],	// offerIT transaction ID
+			'orderid'   => $data->$mapper['db_column'],			// order ID - has to be unique for OfferIT to accept conversion POST call
 
-			'gross'     => $data->$this->config['map_total'],			// transaction total
+			'gross'     => $data->$mapper['map_total'],			// transaction total
 	
-			'firstname' => $data->$this->config['map_first_name'],
-			'lastname'  => $data->$this->config['map_last_name'] ,
-			'address1'  => $this->config['map_address1'],
-			'address2'  => $this->config['map_address2'],
-			'city'      => $this->config['map_city']    ,
-			'state'     => $this->config['map_state']   ,
-			'zip'       => $this->config['map_zip']     ,
-			'country'   => $this->config['map_country'] ,
+			'firstname' => $data->$mapper['map_first_name'],
+			'lastname'  => $data->$mapper['map_last_name'] ,
+			'address1'  => $data->$mapper['map_address1'],
+			'address2'  => $data->$mapper['map_address2'],
+			'city'      => $data->$mapper['map_city']    ,
+			'state'     => $data->$mapper['map_state']   ,
+			'zip'       => $data->$mapper['map_zip']     ,
+			'country'   => $data->$mapper['map_country'] ,
 	
-			'email'     => $this->config['map_email']   ,
-			'phone'     => $this->config['map_phone']   ,
+			'email'     => $data->$mapper['map_email']   ,
+			'phone'     => $data->$mapper['map_phone']   ,
 	
-			'custom1'   => $this->config['map_custom1'] ,
-			'custom2'   => $this->config['map_custom2'] ,
-			'custom3'   => $this->config['map_custom3'] ,
-			'custom4'   => $this->config['map_custom4'] ,
-			'custom5'   => $this->config['map_custom5'] ,
+			'custom1'   => $data->$mapper['map_custom1'] ,
+			'custom2'   => $data->$mapper['map_custom2'] ,
+			'custom3'   => $data->$mapper['map_custom3'] ,
+			'custom4'   => $data->$mapper['map_custom4'] ,
+			'custom5'   => $data->$mapper['map_custom5'] ,
+
 			'ip'     	=> $_SERVER['REMOTE_ADDR']
 		);
 
@@ -188,11 +207,16 @@ class offer_it {
 		// store CURL post results in database
 		$data = array(
 			'address'  => $_SERVER['REMOTE_ADDR'],
-			'request'  => substr(print_r($post_data, true), 6),
+			'request'  => 'Sending conversion pixel to OfferIT: ' . substr(print_r($post_data, true), 6),
 			'response' => $response
 		);
 
+		// clean session transID on success
+		unset($_SESSION['offer_it']['transid']);
+
 		if($this->config['log']) $this->wpdb->insert($this->wpdb->prefix . 'offerit_log', $data);
+
+		return true;
 	}
 	
 	
