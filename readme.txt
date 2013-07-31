@@ -33,6 +33,17 @@ No this is private project providing integration for OfferIT with WordPress e-co
 Yes, this plugin is configurable and as long you can provide conversion URL, unique order ID and database table to query for order details, you can integrate OfferIT affiliate tracking system with your e-commerce plugin.
 
 
+== Screenshots ==
+
+1. This is the screenshot of admin panel: screenshot-1.png. 
+
+
+== Upgrade Notice ==
+
+= 1.0 =
+Initial version
+
+
 == Changelog ==
 
 = 1.0 =

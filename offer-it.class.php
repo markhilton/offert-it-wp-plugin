@@ -166,6 +166,7 @@ class offer_it {
 			'transid'   => $_SESSION['offer_it']['transid'],	// offerIT transaction ID
 			'orderid'   => $data->$mapper['db_column'],			// order ID - has to be unique for OfferIT to accept conversion POST call
 
+			'revenue'   => $data->$mapper['map_total'],			// transaction total
 			'gross'     => $data->$mapper['map_total'],			// transaction total
 	
 			'firstname' => $data->$mapper['map_first_name'],
